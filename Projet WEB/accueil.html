@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Agora Francia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+    body {
+        font-family: 'EB Garamond', serif;
+        background-color: #fdfaf4;
+        background-image: url('colonne.jpg');
+        margin: 20px;
+        background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        color: #3a2f0b;
+    }
+
+    .wrapper {
+        position: relative;
+        border: 10px double #a87e41;
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+        
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll; /* Pas fixe pour que ça reste fluide dans wrapper */
+        box-shadow: 0 0 20px rgba(0,0,0,0.3)
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid #a87e41;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header h1 {
+        color: #2f4a6d;
+        font-size: 40px;
+        letter-spacing: 2px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .logo img {
+        height: 70px;
+        border: 2px solid #a87e41;
+        padding: 5px;
+        background-color: #fff;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-around;
+        background-color: #f7efe3;
+        border: 3px solid #a87e41;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .navigation button {
+        background-color: #e5d4a1;
+        border: 2px solid #a87e41;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #3a2f0b;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        transition: background 0.3s;
+    }
+
+    .navigation button:hover {
+        background-color: #d1b97b;
+    }
+
+    .section {
+        min-height: 200px;
+        border: 4px double #a87e41;
+        background-color: #fffaf0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
+        color: #2f4a6d;
+        text-transform: uppercase;
+        margin-top: 20px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 15px;
+        margin-top: 20px;
+        border-top: 4px solid #a87e41;
+        color: #3a2f0b;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .label {
+        color: #8b0000;
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="box">
+      <div class="header">
+        <h1>Agora Francia</h1>
+        <div class="logo">
+          <img src="logo.jpg" alt="Logo Agora">
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="navigation">
+        <a href = "accueil.html"><button>Accueil</button></a>
+        <a href = "parcourir.html"><button>Tout Parcourir</button></a>
+        <a href = "notifications.html"><button>Notifications</button></a>
+        <a href = "panier.html"><button>Panier</button></a>
+        <a href = "compte.html"><button>Votre Compte</button></a>
+      </div>
+    </div>
+
+    <div class="section">SECTION</div>
+    <div class="footer">
+        <small>agoriafrancia@ece.fr | Copyright &copy; 2025 Agoria Francia | +33 06 30 44 46 50</small><br>
+    </div>
+  </div>
+
+</body>
+</html>
