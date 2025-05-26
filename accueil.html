@@ -20,11 +20,10 @@
         padding: 20px;
         max-width: 900px;
         margin: auto;
-        
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-attachment: scroll; /* Pas fixe pour que ça reste fluide dans wrapper */
+        background-attachment: scroll;
         box-shadow: 0 0 20px rgba(0,0,0,0.3)
     }
 
@@ -82,13 +81,7 @@
         min-height: 200px;
         border: 4px double #a87e41;
         background-color: #fffaf0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 30px;
-        font-weight: bold;
-        color: #2f4a6d;
-        text-transform: uppercase;
+        padding: 20px;
         margin-top: 20px;
     }
 
@@ -110,6 +103,130 @@
         text-transform: uppercase;
         font-family: sans-serif;
     }
+
+    /* Styles spécifiques à la page d'accueil */
+    .welcome-message {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .welcome-message h2 {
+        color: #2f4a6d;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .welcome-message p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .section-title {
+        color: #8b0000;
+        font-size: 22px;
+        border-bottom: 2px solid #a87e41;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .carousel {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px 0;
+        scrollbar-width: thin;
+        scrollbar-color: #a87e41 #f7efe3;
+    }
+
+    .carousel::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .carousel::-webkit-scrollbar-track {
+        background: #f7efe3;
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+        background-color: #a87e41;
+        border-radius: 4px;
+    }
+
+    .carousel-item {
+        min-width: 200px;
+        border: 2px solid #a87e41;
+        padding: 10px;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .carousel-item h3 {
+        font-size: 16px;
+        margin: 5px 0;
+        color: #2f4a6d;
+    }
+
+    .carousel-item .price {
+        font-weight: bold;
+        color: #8b0000;
+    }
+
+    .contact-info {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .contact-info h3 {
+        color: #2f4a6d;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .contact-info p {
+        margin: 5px 0;
+    }
+
+    .map-container {
+        margin-top: 15px;
+        height: 200px;
+        background-color: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #a87e41;
+    }
+
+    .type-badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: bold;
+        margin-left: 5px;
+        text-transform: uppercase;
+    }
+
+    .type-immediate {
+        background-color: #2f4a6d;
+        color: white;
+    }
+
+    .type-negotiation {
+        background-color: #a87e41;
+        color: white;
+    }
+
+    .type-auction {
+        background-color: #8b0000;
+        color: white;
+    }
   </style>
 </head>
 <body>
@@ -127,19 +244,156 @@
 
     <div class="box">
       <div class="navigation">
-        <a href = "accueil.html"><button>Accueil</button></a>
-        <a href = "parcourir.html"><button>Tout Parcourir</button></a>
-        <a href = "notifications.html"><button>Notifications</button></a>
-        <a href = "panier.html"><button>Panier</button></a>
-        <a href = "compte.html"><button>Votre Compte</button></a>
+        <a href="accueil.html"><button>Accueil</button></a>
+        <a href="parcourir.html"><button>Tout Parcourir</button></a>
+        <a href="notifications.html"><button>Notifications</button></a>
+        <a href="panier.html"><button>Panier</button></a>
+        <a href="compte.html"><button>Votre Compte</button></a>
       </div>
     </div>
 
-    <div class="section">SECTION</div>
+    <div class="section">
+      <div class="welcome-message">
+        <h2>Bienvenue à Agora Francia</h2>
+        <p>Inspiré des marchés grecs antiques, Agora Francia vous propose une expérience unique de commerce en ligne où vous pouvez acheter immédiatement, négocier avec les vendeurs ou participer à des enchères pour des objets rares.</p>
+      </div>
+
+      <div class="daily-selection">
+        <h3 class="section-title">Sélection du Jour</h3>
+        <div class="carousel">
+          <!-- Article 1 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Amphore" alt="Amphore grecque">
+            <h3>Amphore antique <span class="type-badge type-auction">Enchère</span></h3>
+            <div class="price">Offre actuelle: 450 €</div>
+            <button class="view-btn">Voir</button>
+          </div>
+          
+          <!-- Article 2 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Statue" alt="Statuette">
+            <h3>Statuette d'Athéna <span class="type-badge type-negotiation">Négociation</span></h3>
+            <div class="price">Prix initial: 320 €</div>
+            <button class="view-btn">Voir</button>
+          </div>
+          
+          <!-- Article 3 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Collier" alt="Collier">
+            <h3>Collier olympique <span class="type-badge type-immediate">Achat immédiat</span></h3>
+            <div class="price">180 €</div>
+            <button class="view-btn">Voir</button>
+          </div>
+          
+          <!-- Article 4 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Monnaie" alt="Monnaie">
+            <h3>Monnaie ancienne <span class="type-badge type-auction">Enchère</span></h3>
+            <div class="price">Offre actuelle: 210 €</div>
+            <button class="view-btn">Voir</button>
+          </div>
+          
+          <!-- Article 5 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Lampe" alt="Lampe">
+            <h3>Lampe à huile <span class="type-badge type-negotiation">Négociation</span></h3>
+            <div class="price">Prix initial: 75 €</div>
+            <button class="view-btn">Voir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flash-sales" style="margin-top: 30px;">
+        <h3 class="section-title">Ventes Flash - Best-sellers de la semaine</h3>
+        <div class="carousel">
+          <!-- Best-seller 1 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Best1" alt="Best-seller 1">
+            <h3>Bracelet grec <span class="type-badge type-immediate">Achat immédiat</span></h3>
+            <div class="price">120 € <span style="text-decoration: line-through; color: #777; font-size: 12px;">150 €</span></div>
+            <button class="view-btn">Voir</button>
+          </div>
+          
+          <!-- Best-seller 2 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Best2" alt="Best-seller 2">
+            <h3>Vase corinthien <span class="type-badge type-immediate">Achat immédiat</span></h3>
+            <div class="price">95 € <span style="text-decoration: line-through; color: #777; font-size: 12px;">120 €</span></div>
+            <button class="view-btn">Voir</button>
+          </div>
+          
+          <!-- Best-seller 3 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Best3" alt="Best-seller 3">
+            <h3>Miroir bronze <span class="type-badge type-immediate">Achat immédiat</span></h3>
+            <div class="price">65 € <span style="text-decoration: line-through; color: #777; font-size: 12px;">80 €</span></div>
+            <button class="view-btn">Voir</button>
+          </div>
+          
+          <!-- Best-seller 4 -->
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/200x120?text=Best4" alt="Best-seller 4">
+            <h3>Pendentif Héra <span class="type-badge type-immediate">Achat immédiat</span></h3>
+            <div class="price">45 € <span style="text-decoration: line-through; color: #777; font-size: 12px;">60 €</span></div>
+            <button class="view-btn">Voir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <h3>Contactez Agora Francia</h3>
+        <p>Email: agora@francia.com</p>
+        <p>Téléphone: +33 1 23 45 67 89</p>
+        <p>Adresse: 12 Rue des Athéniens, 75005 Paris</p>
+        
+        <div class="map-container">
+          [Carte Google Maps ou équivalent]
+        </div>
+      </div>
+    </div>
+    
     <div class="footer">
-        <small>agoriafrancia@ece.fr | Copyright &copy; 2025 Agoria Francia | +33 06 30 44 46 50</small><br>
+      <small>agoriafrancia@ece.fr | Copyright &copy; 2025 Agoria Francia | +33 06 30 44 46 50</small><br>
     </div>
   </div>
 
+  <script>
+    // Fonctionnalité basique du carrousel (à améliorer)
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      });
+
+      carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
+
+      carousel.addEventListener('mouseup', () => {
+        isDown = false;
+      });
+
+      carousel.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2;
+        carousel.scrollLeft = scrollLeft - walk;
+      });
+    });
+
+    // Boutons "Voir"
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const itemTitle = this.parentElement.querySelector('h3').textContent;
+        alert(`Redirection vers la page de: ${itemTitle}`);
+      });
+    });
+  </script>
 </body>
 </html>
