@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Nouvelle Vente</title>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #fdfaf4;
+      color: #3a2f0b;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2f4a6d;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      border: 4px double #a87e41;
+      background-color: #fffaf0;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #a87e41;
+      border-radius: 4px;
+      background-color: #fff;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #e5d4a1;
+      border: 2px solid #a87e41;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #3a2f0b;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d1b97b;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mettre un article en vente</h1>
+
+  <form action="ajout_article.php" method="POST">
+    <!-- Infos vendeur -->
+    <label for="vendeur_id">ID du vendeur</label>
+    <input type="number" name="vendeur_id" required>
+
+    <!-- Infos article -->
+    <label for="nom">Nom de l'article</label>
+    <input type="text" name="nom" required>
+
+    <label for="description">Description</label>
+    <textarea name="description" rows="4" required></textarea>
+
+    <label for="prix">Prix (€)</label>
+    <input type="number" name="prix" step="0.01" required>
+
+    <label for="type_vente">Type de vente</label>
+    <select name="type_vente" required>
+      <option value="achat_immediat">Achat immédiat</option>
+      <option value="negociation">Négociation</option>
+      <option value="enchere">Enchère</option>
+    </select>
+
+    <label for="type_article">Type d'article</label>
+    <select name="type_article" required>
+      <option value="rare">Rare</option>
+      <option value="haut_de_gamme">Haut de gamme</option>
+      <option value="regulier">Régulier</option>
+    </select>
+
+    <label for="image_principale">URL de l'image</label>
+    <input type="text" name="image_principale">
+
+    <label for="video_url">URL de la vidéo (optionnel)</label>
+    <input type="text" name="video_url">
+
+    <button type="submit">Ajouter l'article</button>
+  </form>
+
+</body>
+</html>
