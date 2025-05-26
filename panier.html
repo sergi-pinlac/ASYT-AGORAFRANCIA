@@ -1,1 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Panier - Agora Francia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+    body {
+        font-family: 'EB Garamond', serif;
+        background-color: #fdfaf4;
+        background-image: url('colonne.jpg');
+        margin: 20px;
+        background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        color: #3a2f0b;
+    }
 
+    .wrapper {
+        position: relative;
+        border: 10px double #a87e41;
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3)
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid #a87e41;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header h1 {
+        color: #2f4a6d;
+        font-size: 40px;
+        letter-spacing: 2px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .logo img {
+        height: 70px;
+        border: 2px solid #a87e41;
+        padding: 5px;
+        background-color: #fff;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-around;
+        background-color: #f7efe3;
+        border: 3px solid #a87e41;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .navigation button {
+        background-color: #e5d4a1;
+        border: 2px solid #a87e41;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #3a2f0b;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        transition: background 0.3s;
+    }
+
+    .navigation button:hover {
+        background-color: #d1b97b;
+    }
+
+    .section {
+        min-height: 200px;
+        border: 4px double #a87e41;
+        background-color: #fffaf0;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 15px;
+        margin-top: 20px;
+        border-top: 4px solid #a87e41;
+        color: #3a2f0b;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .label {
+        color: #8b0000;
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        font-family: sans-serif;
+    }
+
+    /* Styles spécifiques au panier */
+    .panier-title {
+        text-align: center;
+        color: #2f4a6d;
+        font-size: 28px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #a87e41;
+        padding-bottom: 10px;
+    }
+
+    .item-panier {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px dashed #a87e41;
+        margin-bottom: 15px;
+    }
+
+    .item-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 2px solid #a87e41;
+        margin-right: 20px;
+    }
+
+    .item-details {
+        flex-grow: 1;
+    }
+
+    .item-name {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .item-desc {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .item-price {
+        font-weight: bold;
+        color: #8b0000;
+    }
+
+    .item-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-actions button {
+        background-color: #e5d4a1;
+        border: 1px solid #a87e41;
+        border-radius: 4px;
+        padding: 5px 10px;
+        margin: 3px;
+        cursor: pointer;
+    }
+
+    .total-section {
+        text-align: right;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 2px solid #a87e41;
+    }
+
+    .total-amount {
+        font-size: 20px;
+        font-weight: bold;
+        color: #8b0000;
+    }
+
+    .checkout-btn {
+        background-color: #8b0000;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: background 0.3s;
+    }
+
+    .checkout-btn:hover {
+        background-color: #6b0000;
+    }
+
+    .empty-cart {
+        text-align: center;
+        font-size: 18px;
+        color: #555;
+        padding: 40px 0;
+    }
+
+    .type-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .type-immediate {
+        background-color: #2f4a6d;
+        color: white;
+    }
+
+    .type-negotiation {
+        background-color: #a87e41;
+        color: white;
+    }
+
+    .type-auction {
+        background-color: #8b0000;
+        color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="box">
+      <div class="header">
+        <h1>Agora Francia</h1>
+        <div class="logo">
+          <img src="logo.jpg" alt="Logo Agora">
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="navigation">
+        <a href="accueil.html"><button>Accueil</button></a>
+        <a href="parcourir.html"><button>Tout Parcourir</button></a>
+        <a href="notifications.html"><button>Notifications</button></a>
+        <a href="panier.html"><button>Panier</button></a>
+        <a href="compte.html"><button>Votre Compte</button></a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="panier-title">Votre Panier</h2>
+      
+      <div id="cart-items">
+        <!-- Article 1 - Achat immédiat -->
+        <div class="item-panier">
+          <img src="https://via.placeholder.com/100" alt="Article" class="item-image">
+          <div class="item-details">
+            <div class="item-name">
+              Amphore antique
+              <span class="type-badge type-immediate">Achat immédiat</span>
+            </div>
+            <div class="item-desc">Amphore grecque authentique du 5ème siècle avant JC, en excellent état.</div>
+            <div class="item-price">350 €</div>
+          </div>
+          <div class="item-actions">
+            <button onclick="removeItem(1)">Supprimer</button>
+            <button onclick="updateQuantity(1, -1)">-</button>
+            <span>1</span>
+            <button onclick="updateQuantity(1, 1)">+</button>
+          </div>
+        </div>
+        
+        <!-- Article 2 - Négociation -->
+        <div class="item-panier">
+          <img src="https://via.placeholder.com/100" alt="Article" class="item-image">
+          <div class="item-details">
+            <div class="item-name">
+              Bracelet olympique
+              <span class="type-badge type-negotiation">Négociation</span>
+            </div>
+            <div class="item-desc">Bracelet en or avec motif des Jeux Olympiques antiques, petit défaut sur le fermoir.</div>
+            <div class="item-price">Prix proposé: 280 € (prix initial: 320 €)</div>
+            <div class="negotiation-status">En attente de réponse du vendeur</div>
+          </div>
+          <div class="item-actions">
+            <button onclick="removeItem(2)">Annuler offre</button>
+            <button onclick="showNegotiationModal(2)">Modifier offre</button>
+          </div>
+        </div>
+        
+        <!-- Article 3 - Meilleure offre -->
+        <div class="item-panier">
+          <img src="https://via.placeholder.com/100" alt="Article" class="item-image">
+          <div class="item-details">
+            <div class="item-name">
+              Statuette d'Athéna
+              <span class="type-badge type-auction">Meilleure offre</span>
+            </div>
+            <div class="item-desc">Statuette en marbre rare de la déesse Athéna, hauteur 25cm.</div>
+            <div class="item-price">Votre offre: 1200 € (meilleure offre actuelle: 1100 €)</div>
+            <div class="auction-info">Enchère se termine dans 2 jours 4 heures</div>
+          </div>
+          <div class="item-actions">
+            <button onclick="removeItem(3)">Retirer offre</button>
+            <button onclick="showBidModal(3)">Augmenter offre</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="total-section">
+        <div>Sous-total: <span class="total-amount">1830 €</span></div>
+        <div>Frais de livraison: <span class="total-amount">20 €</span></div>
+        <div>Total: <span class="total-amount">1850 €</span></div>
+        <button class="checkout-btn">Passer la commande</button>
+      </div>
+      
+      <!-- Panier vide (à afficher quand il n'y a pas d'articles) -->
+      <!-- <div class="empty-cart">
+        Votre panier est vide.<br>
+        <a href="parcourir.html">Parcourir les articles</a>
+      </div> -->
+    </div>
+    
+    <div class="footer">
+      <small>agoriafrancia@ece.fr | Copyright &copy; 2025 Agoria Francia | +33 06 30 44 46 50</small><br>
+    </div>
+  </div>
+
+  <script>
+    // Fonctions JavaScript pour gérer les interactions
+    function removeItem(itemId) {
+      // À implémenter: Supprimer l'article du panier
+      alert("Article " + itemId + " sera supprimé du panier");
+    }
+    
+    function updateQuantity(itemId, change) {
+      // À implémenter: Modifier la quantité
+      alert("Quantité de l'article " + itemId + " modifiée de " + change);
+    }
+    
+    function showNegotiationModal(itemId) {
+      // À implémenter: Afficher un modal pour négocier
+      alert("Ouvrir modal de négociation pour l'article " + itemId);
+    }
+    
+    function showBidModal(itemId) {
+      // À implémenter: Afficher un modal pour enchérir
+      alert("Ouvrir modal d'enchère pour l'article " + itemId);
+    }
+  </script>
+</body>
+</html>
