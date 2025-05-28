@@ -286,15 +286,15 @@
     async function loadCartItems() {
       try {
         // Récupérer les articles du panier
-        const cartResponse = await fetch('get_cart_items.php');
+        const cartResponse = await fetch('cart_api.php?action=get_cart_items');
         const cartItems = await cartResponse.json();
         
         // Récupérer les négociations
-        const negotiationsResponse = await fetch('get_negotiations.php');
+        const negotiationsResponse = await fetch('cart_api.php?action=get_negotiations');
         const negotiations = await negotiationsResponse.json();
         
         // Récupérer les enchères
-        const bidsResponse = await fetch('get_bids.php');
+        const bidsResponse = await fetch('cart_api.php?action=get_bids');
         const bids = await bidsResponse.json();
 
         const cartContainer = document.getElementById('cart-items');
@@ -426,7 +426,7 @@
 
     async function removeCartItem(itemId) {
       try {
-        const response = await fetch(`remove_cart_item.php?id=${itemId}`, { method: 'POST' });
+        const response = await fetch(`cart_api.php?action=remove_item&id=${itemId}`, { method: 'POST' });
         const result = await response.json();
         
         if (result.success) {
@@ -443,7 +443,7 @@
 
     async function updateQuantity(itemId, change) {
       try {
-        const response = await fetch(`update_cart_quantity.php?id=${itemId}&change=${change}`, { method: 'POST' });
+        const response = await fetch(`cart_api.php?action=update_quantity&id=${itemId}&change=${change}`, { method: 'POST' });
         const result = await response.json();
         
         if (result.success) {
@@ -460,7 +460,7 @@
     async function cancelNegotiation(negId) {
       if (confirm('Voulez-vous vraiment annuler cette négociation ?')) {
         try {
-          const response = await fetch(`cancel_negotiation.php?id=${negId}`, { method: 'POST' });
+          const response = await fetch(`cart_api.php?action=cancel_negotiation&id=${negId}`, { method: 'POST' });
           const result = await response.json();
           
           if (result.success) {
@@ -484,7 +484,7 @@
     async function cancelBid(bidId) {
       if (confirm('Voulez-vous vraiment retirer cette enchère ?')) {
         try {
-          const response = await fetch(`cancel_bid.php?id=${bidId}`, { method: 'POST' });
+          const response = await fetch(`cart_api.php?action=cancel_bid&id=${bidId}`, { method: 'POST' });
           const result = await response.json();
           
           if (result.success) {
@@ -507,7 +507,7 @@
 
     async function checkout() {
       try {
-        const response = await fetch('process_checkout.php', { method: 'POST' });
+       const response = await fetch('cart_api.php?action=checkout', { method: 'POST' });
         const result = await response.json();
         
         if (result.success) {

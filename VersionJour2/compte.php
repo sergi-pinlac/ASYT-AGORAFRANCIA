@@ -200,7 +200,9 @@ session_start();
             <h3>Bienvenue, <?= htmlspecialchars($_SESSION['utilisateur']['prenom']) ?> <?= htmlspecialchars($_SESSION['utilisateur']['nom']) ?> !</h3>
             <p>Statut : <strong><?= htmlspecialchars($_SESSION['utilisateur']['type']) ?></strong></p>
             <div class="actions-compte">
-                <a href="logout.php"><button class="retour-bouton">Se déconnecter</button></a>
+              <a href="tableau_de_bord.php"><button class="retour-bouton">Accéder au tableau de bord</button></a>
+
+              <a href="logout.php"><button class="retour-bouton">Se déconnecter</button></a>
             </div>
         <?php else: ?>
             <h3>Vous n'êtes pas connecté.</h3>

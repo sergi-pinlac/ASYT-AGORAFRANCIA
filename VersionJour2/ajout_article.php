@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom             = $_POST['nom'] ?? '';
     $description     = $_POST['description'] ?? '';
     $prix            = $_POST['prix'] ?? 0;
+    $quantity            = $_POST['quantity'] ?? 0;
     $type_vente      = $_POST['type_vente'] ?? '';
     $type_article    = $_POST['type_article'] ?? '';
     $image_principale = $_POST['image_principale'] ?? '';
@@ -43,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':nom' => $nom,
             ':description' => $description,
             ':prix' => $prix,
+            ':quantity' => $quantity
             ':type_vente' => $type_vente,
             ':type_article' => $type_article,
             ':image_principale' => $image_principale,
