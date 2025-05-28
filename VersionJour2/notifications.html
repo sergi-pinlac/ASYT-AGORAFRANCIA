@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications - Agora Francia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+    body {
+        font-family: 'EB Garamond', serif;
+        background-color: #fdfaf4;
+        background-image: url('colonne.jpg');
+        margin: 20px;
+        background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        color: #3a2f0b;
+    }
+
+    .wrapper {
+        position: relative;
+        border: 10px double #a87e41;
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3)
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid #a87e41;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header h1 {
+        color: #2f4a6d;
+        font-size: 40px;
+        letter-spacing: 2px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .logo img {
+        height: 70px;
+        border: 2px solid #a87e41;
+        padding: 5px;
+        background-color: #fff;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-around;
+        background-color: #f7efe3;
+        border: 3px solid #a87e41;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .navigation button {
+        background-color: #e5d4a1;
+        border: 2px solid #a87e41;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #3a2f0b;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        transition: background 0.3s;
+    }
+
+    .navigation button:hover {
+        background-color: #d1b97b;
+    }
+
+    .section {
+        min-height: 200px;
+        border: 4px double #a87e41;
+        background-color: #fffaf0;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 15px;
+        margin-top: 20px;
+        border-top: 4px solid #a87e41;
+        color: #3a2f0b;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    /* Styles spécifiques aux notifications */
+    .notifications-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .notifications-title {
+        color: #2f4a6d;
+        font-size: 28px;
+        margin: 0;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-bar input {
+        padding: 8px 12px;
+        border: 2px solid #a87e41;
+        border-radius: 4px;
+        font-family: 'EB Garamond', serif;
+        width: 200px;
+    }
+
+    .search-bar button {
+        background-color: #a87e41;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    .notification-item {
+        border-bottom: 1px dashed #a87e41;
+        padding: 15px 0;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .notification-item.unread {
+        background-color: #f7efe3;
+        border-left: 3px solid #8b0000;
+        padding-left: 10px;
+    }
+
+    .notification-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #2f4a6d;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .notification-content {
+        flex-grow: 1;
+    }
+
+    .notification-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #2f4a6d;
+    }
+
+    .notification-time {
+        font-size: 12px;
+        color: #777;
+        margin-bottom: 5px;
+    }
+
+    .notification-message {
+        margin-bottom: 10px;
+    }
+
+    .notification-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .notification-actions button {
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    .btn-view {
+        background-color: #2f4a6d;
+        color: white;
+        border: none;
+    }
+
+    .btn-dismiss {
+        background-color: transparent;
+        border: 1px solid #a87e41;
+        color: #3a2f0b;
+    }
+
+    .notification-category {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: bold;
+        margin-left: 5px;
+        text-transform: uppercase;
+    }
+
+    .category-auction {
+        background-color: #8b0000;
+        color: white;
+    }
+
+    .category-negotiation {
+        background-color: #a87e41;
+        color: white;
+    }
+
+    .category-purchase {
+        background-color: #2f4a6d;
+        color: white;
+    }
+
+    .category-alert {
+        background-color: #d1b97b;
+        color: #3a2f0b;
+    }
+
+    .empty-notifications {
+        text-align: center;
+        padding: 40px 0;
+        color: #777;
+        font-style: italic;
+    }
+
+    .filter-tabs {
+        display: flex;
+        border-bottom: 2px solid #a87e41;
+        margin-bottom: 20px;
+    }
+
+    .filter-tab {
+        padding: 8px 15px;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+    }
+
+    .filter-tab.active {
+        border-bottom-color: #8b0000;
+        font-weight: bold;
+    }
+
+    .filter-tab:hover {
+        background-color: #f7efe3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="box">
+      <div class="header">
+        <h1>Agora Francia</h1>
+        <div class="logo">
+          <img src="logo.jpg" alt="Logo Agora">
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="navigation">
+        <a href="accueil.html"><button>Accueil</button></a>
+        <a href="parcourir.html"><button>Tout Parcourir</button></a>
+        <a href="notifications.html"><button>Notifications</button></a>
+        <a href="panier.html"><button>Panier</button></a>
+        <a href="compte.php"><button>Votre Compte</button></a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="notifications-header">
+        <h2 class="notifications-title">Vos Notifications</h2>
+        <div class="search-bar">
+          <input type="text" placeholder="Rechercher dans les notifications...">
+          <button>🔍</button>
+        </div>
+      </div>
+
+      <div class="filter-tabs">
+        <div class="filter-tab active">Toutes</div>
+        <div class="filter-tab">Non lues</div>
+        <div class="filter-tab">Enchères</div>
+        <div class="filter-tab">Négociations</div>
+        <div class="filter-tab">Alertes</div>
+      </div>
+
+      <div id="notifications-list">
+        <!-- Notification 1 - Enchère gagnée -->
+        <div class="notification-item unread">
+          <div class="notification-icon">🏆</div>
+          <div class="notification-content">
+            <div class="notification-title">
+              Enchère remportée
+              <span class="notification-category category-auction">Enchère</span>
+            </div>
+            <div class="notification-time">Il y a 2 heures</div>
+            <div class="notification-message">
+              Félicitations ! Vous avez remporté l'enchère pour "Amphore antique" avec une offre de 401€. Le paiement a été automatiquement effectué.
+            </div>
+            <div class="notification-actions">
+              <button class="btn-view">Voir l'article</button>
+              <button class="btn-dismiss">Marquer comme lu</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notification 2 - Négociation acceptée -->
+        <div class="notification-item unread">
+          <div class="notification-icon">🤝</div>
+          <div class="notification-content">
+            <div class="notification-title">
+              Négociation acceptée
+              <span class="notification-category category-negotiation">Négociation</span>
+            </div>
+            <div class="notification-time">Il y a 1 jour</div>
+            <div class="notification-message">
+              Le vendeur a accepté votre offre de 280€ pour "Bracelet olympique". Le paiement a été automatiquement effectué.
+            </div>
+            <div class="notification-actions">
+              <button class="btn-view">Voir l'article</button>
+              <button class="btn-dismiss">Marquer comme lu</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notification 3 - Nouvelle offre sur enchère -->
+        <div class="notification-item">
+          <div class="notification-icon">⚠️</div>
+          <div class="notification-content">
+            <div class="notification-title">
+              Nouvelle offre sur votre enchère
+              <span class="notification-category category-auction">Enchère</span>
+            </div>
+            <div class="notification-time">Il y a 1 jour</div>
+            <div class="notification-message">
+              Une nouvelle offre de 1100€ a été placée sur "Statuette d'Athéna". Votre offre actuelle de 1200€ reste la meilleure.
+            </div>
+            <div class="notification-actions">
+              <button class="btn-view">Voir l'enchère</button>
+              <button class="btn-dismiss">Ignorer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notification 4 - Alerte article disponible -->
+        <div class="notification-item">
+          <div class="notification-icon">🔔</div>
+          <div class="notification-content">
+            <div class="notification-title">
+              Article disponible
+              <span class="notification-category category-alert">Alerte</span>
+            </div>
+            <div class="notification-time">Il y a 2 jours</div>
+            <div class="notification-message">
+              Un nouvel article correspondant à vos critères est disponible : "Collier grec en or - période hellénistique".
+            </div>
+            <div class="notification-actions">
+              <button class="btn-view">Voir l'article</button>
+              <button class="btn-dismiss">Ignorer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notification 5 - Commande expédiée -->
+        <div class="notification-item">
+          <div class="notification-icon">✉️</div>
+          <div class="notification-content">
+            <div class="notification-title">
+              Commande expédiée
+              <span class="notification-category category-purchase">Achat</span>
+            </div>
+            <div class="notification-time">Il y a 3 jours</div>
+            <div class="notification-message">
+              Votre commande #AF-2025-0456 a été expédiée. Livraison prévue le 05/06/2025.
+            </div>
+            <div class="notification-actions">
+              <button class="btn-view">Suivre la commande</button>
+              <button class="btn-dismiss">Ignorer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Afficher quand il n'y a pas de notifications -->
+      <!-- <div class="empty-notifications">
+        Vous n'avez aucune notification pour le moment.
+      </div> -->
+    </div>
+    
+    <div class="footer">
+      <small>agoriafrancia@ece.fr | Copyright &copy; 2025 Agoria Francia | +33 06 30 44 46 50</small><br>
+    </div>
+  </div>
+
+  <script>
+    // Fonctionnalités de base des notifications
+    document.querySelectorAll('.btn-dismiss').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const notificationItem = this.closest('.notification-item');
+        notificationItem.classList.remove('unread');
+        this.textContent = 'Ignoré';
+        this.disabled = true;
+      });
+    });
+
+    document.querySelectorAll('.btn-view').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const notificationTitle = this.closest('.notification-item').querySelector('.notification-title').textContent;
+        alert(`Redirection vers: ${notificationTitle}`);
+      });
+    });
+
+    // Filtrage des notifications
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelector('.filter-tab.active').classList.remove('active');
+        this.classList.add('active');
+        alert(`Filtrage des notifications par: ${this.textContent}`);
+      });
+    });
+
+    // Recherche dans les notifications
+    document.querySelector('.search-bar button').addEventListener('click', function() {
+      const searchTerm = document.querySelector('.search-bar input').value;
+      alert(`Recherche des notifications contenant: "${searchTerm}"`);
+    });
+  </script>
+</body>
+</html>
