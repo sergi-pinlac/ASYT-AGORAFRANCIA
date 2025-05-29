@@ -2,13 +2,11 @@
 session_start();
 header('Content-Type: application/json');
 
-// Vérifie que l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['utilisateur']['id'])) {
     echo json_encode(['success' => false, 'message' => 'Utilisateur non connecté']);
     exit;
 }
-
-$userId = $_SESSION['user_id'];
+$userId = $_SESSION['utilisateur']['id'];
 
 // Connexion à la base de données
 try {

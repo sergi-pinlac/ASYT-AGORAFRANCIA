@@ -1,8 +1,18 @@
 <?php
+session_start(); // Doit être la première ligne
 header('Content-Type: application/json');
 require_once('db.php');
 
 $response = ['success' => false, 'message' => ''];
+
+// Vérification de la connexion adaptée à votre système
+if (!isset($_SESSION['utilisateur']) || !isset($_SESSION['utilisateur']['id'])) {
+    $response['message'] = 'Veuillez vous connecter pour effectuer cette action';
+    echo json_encode($response);
+    exit;
+}
+
+$userId = $_SESSION['utilisateur']['id']; // Adapté à votre structure de session
 
 try {
     if (!isset($_POST['article_id'])) {
@@ -10,7 +20,6 @@ try {
     }
 
     $articleId = intval($_POST['article_id']);
-    $userId = 1; // À remplacer par l'ID de l'utilisateur connecté
 
     // Récupérer l'article
     $stmt = $pdo->prepare("SELECT * FROM articles WHERE id = ?");
@@ -21,7 +30,7 @@ try {
         throw new Exception('Article non trouvé');
     }
 
-    // Traiter selon le type d'achat
+    // Traiter selon le type d'achat (identique à votre version originale)
     switch($article['type_vente']) {
         case 'achat_immediat':
             $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
@@ -41,7 +50,7 @@ try {
                 $stmt = $pdo->prepare("INSERT INTO paniers (acheteur_id, article_id, statut, date_ajout) VALUES (?, ?, 'en_attente', NOW())");
                 $stmt->execute([$userId, $articleId]);
             
-            $response['message'] = "{$quantity} x {$article['nom']} ajouté au panier pour {$total}€";   
+            $response['message'] = "{$quantity} x {$article['nom']} ajouté au panier";   
             break;
 
         case 'negociation':
