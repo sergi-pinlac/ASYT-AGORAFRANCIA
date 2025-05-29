@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Panier - Agora Francia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+    body {
+        font-family: 'EB Garamond', serif;
+        background-color: #fdfaf4;
+        background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        margin: 20px;
+        color: #3a2f0b;
+    }
+
+    .wrapper {
+        position: relative;
+        border: 10px double #a87e41;
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3)
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid #a87e41;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header h1 {
+        color: #2f4a6d;
+        font-size: 40px;
+        letter-spacing: 2px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .logo img {
+        height: 70px;
+        border: 2px solid #a87e41;
+        padding: 5px;
+        background-color: #fff;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-around;
+        background-color: #f7efe3;
+        border: 3px solid #a87e41;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .navigation button {
+        background-color: #e5d4a1;
+        border: 2px solid #a87e41;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #3a2f0b;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        transition: background 0.3s;
+    }
+
+    .navigation button:hover {
+        background-color: #d1b97b;
+    }
+
+    .section {
+        min-height: 200px;
+        border: 4px double #a87e41;
+        background-color: #fffaf0;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 15px;
+        margin-top: 20px;
+        border-top: 4px solid #a87e41;
+        color: #3a2f0b;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    /* Styles spécifiques au panier */
+    .panier-title {
+        text-align: center;
+        color: #2f4a6d;
+        font-size: 28px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #a87e41;
+        padding-bottom: 10px;
+    }
+
+    .item-panier {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px dashed #a87e41;
+        margin-bottom: 15px;
+    }
+
+    .item-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 2px solid #a87e41;
+        margin-right: 20px;
+    }
+
+    .item-details {
+        flex-grow: 1;
+    }
+
+    .item-name {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .item-desc {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .item-price {
+        font-weight: bold;
+        color: #8b0000;
+    }
+
+    .item-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-actions button {
+        background-color: #e5d4a1;
+        border: 1px solid #a87e41;
+        border-radius: 4px;
+        padding: 5px 10px;
+        margin: 3px;
+        cursor: pointer;
+    }
+
+    .total-section {
+        text-align: right;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 2px solid #a87e41;
+    }
+
+    .total-amount {
+        font-size: 20px;
+        font-weight: bold;
+        color: #8b0000;
+    }
+
+    .checkout-btn {
+        background-color: #8b0000;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: background 0.3s;
+    }
+
+    .checkout-btn:hover {
+        background-color: #6b0000;
+    }
+
+    .empty-cart {
+        text-align: center;
+        font-size: 18px;
+        color: #555;
+        padding: 40px 0;
+    }
+
+    .type-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .type-immediate {
+        background-color: #2f4a6d;
+        color: white;
+    }
+
+    .type-negotiation {
+        background-color: #a87e41;
+        color: white;
+    }
+
+    .type-auction {
+        background-color: #8b0000;
+        color: white;
+    }
+
+    .status-pending {
+        color: #a87e41;
+        font-style: italic;
+    }
+
+    .status-accepted {
+        color: #2f4a6d;
+        font-weight: bold;
+    }
+
+    .status-rejected {
+        color: #8b0000;
+        text-decoration: line-through;
+    }
+
+    .auction-time {
+        font-size: 12px;
+        color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="box">
+      <div class="header">
+        <h1>Agora Francia</h1>
+        <div class="logo">
+          <img src="logo.jpg" alt="Logo Agora">
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="navigation">
+        <a href="accueil.php"><button>Accueil</button></a>
+        <a href="parcourir.html"><button>Tout Parcourir</button></a>
+        <a href="notifications.php"><button>Notifications</button></a>
+        <a href="panier.html"><button>Panier</button></a>
+        <a href="compte.php"><button>Votre Compte</button></a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="panier-title">Votre Panier</h2>
+      
+      <div id="cart-items">
+        <!-- Le contenu sera chargé dynamiquement -->
+      </div>
+      
+      <div class="total-section" id="cart-total">
+        <!-- Le total sera calculé dynamiquement -->
+      </div>
+      
+      <div class="empty-cart" id="empty-cart-message" style="display:none;">
+        Votre panier est vide.<br>
+        <a href="parcourir.html">Parcourir les articles</a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <small>agoriafrancia@ece.fr | Copyright &copy; 2025 Agora Francia | +33 06 30 44 46 50</small><br>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCartItems();
+    });
+
+    async function loadCartItems() {
+      try {
+        // Récupérer les articles du panier
+        const cartResponse = await fetch('cart_api.php?action=get_cart_items');
+        const cartItems = await cartResponse.json();
+        
+        // Récupérer les négociations
+        const negotiationsResponse = await fetch('cart_api.php?action=get_negotiations');
+        const negotiations = await negotiationsResponse.json();
+        
+        // Récupérer les enchères
+        const bidsResponse = await fetch('cart_api.php?action=get_bids');
+        const bids = await bidsResponse.json();
+
+        const cartContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const totalSection = document.getElementById('cart-total');
+
+        // Vider le contenu actuel
+        cartContainer.innerHTML = '';
+        
+        let subtotal = 0;
+        let hasItems = false;
+
+        // Afficher les articles du panier (achats immédiats)
+        if (cartItems.length > 0) {
+          hasItems = true;
+          cartItems.forEach(item => {
+            subtotal += item.prix_unitaire * item.quantity;
+            
+            const itemElement = document.createElement('div');
+            itemElement.className = 'item-panier';
+            itemElement.innerHTML = `
+              <img src="${item.image_principale}" alt="${item.nom}" class="item-image">
+              <div class="item-details">
+                <div class="item-name">
+                  ${item.nom}
+                  <span class="type-badge type-immediate">Achat immédiat</span>
+                </div>
+                <div class="item-desc">${item.description}</div>
+                <div class="item-price">${item.prix_unitaire} € x ${item.quantity}</div>
+              </div>
+              <div class="item-actions">
+                <button onclick="removeCartItem(${item.id})">Supprimer</button>
+                <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="updateQuantity(${item.id}, 1)">+</button>
+              </div>
+            `;
+            cartContainer.appendChild(itemElement);
+          });
+        }
+
+        // Afficher les négociations
+        if (negotiations.length > 0) {
+          hasItems = true;
+          negotiations.forEach(neg => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'item-panier';
+            
+            let statusClass = 'status-pending';
+            let statusText = 'En attente de réponse du vendeur';
+            if (neg.statut === 'accepte') {
+              statusClass = 'status-accepted';
+              statusText = 'Offre acceptée !';
+              subtotal += neg.prix_propose;
+            } else if (neg.statut === 'refuse') {
+              statusClass = 'status-rejected';
+              statusText = 'Offre refusée';
+            }
+            
+            itemElement.innerHTML = `
+              <img src="${neg.image_principale}" alt="${neg.nom}" class="item-image">
+              <div class="item-details">
+                <div class="item-name">
+                  ${neg.nom}
+                  <span class="type-badge type-negotiation">Négociation</span>
+                </div>
+                <div class="item-desc">${neg.description}</div>
+                <div class="item-price">Votre offre: ${neg.prix_propose} € (prix initial: ${neg.prix_initial} €)</div>
+                <div class="${statusClass}">${statusText}</div>
+              </div>
+              <div class="item-actions">
+                <button onclick="cancelNegotiation(${neg.id})">Annuler</button>
+                ${neg.statut === 'refuse' ? `<button onclick="restartNegotiation(${neg.id})">Nouvelle offre</button>` : ''}
+              </div>
+            `;
+            cartContainer.appendChild(itemElement);
+          });
+        }
+
+        // Afficher les enchères
+        if (bids.length > 0) {
+          hasItems = true;
+          bids.forEach(bid => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'item-panier';
+            
+            itemElement.innerHTML = `
+              <img src="${bid.image_principale}" alt="${bid.nom}" class="item-image">
+              <div class="item-details">
+                <div class="item-name">
+                  ${bid.nom}
+                  <span class="type-badge type-auction">Enchère</span>
+                </div>
+                <div class="item-desc">${bid.description}</div>
+                <div class="item-price">Votre offre: ${bid.prix} € (meilleure offre actuelle: ${bid.prix_max} €)</div>
+                <div class="auction-time">Enchère se termine le ${new Date(bid.date_fin).toLocaleDateString()}</div>
+              </div>
+              <div class="item-actions">
+                <button onclick="cancelBid(${bid.id})">Retirer</button>
+                <button onclick="increaseBid(${bid.id})">Augmenter</button>
+              </div>
+            `;
+            cartContainer.appendChild(itemElement);
+          });
+        }
+
+        // Afficher le total ou le message panier vide
+        if (hasItems) {
+          emptyCartMessage.style.display = 'none';
+          
+          const shipping = subtotal > 0 ? 20 : 0; // Frais de livraison seulement pour les achats immédiats
+          const total = subtotal + shipping;
+          
+          totalSection.innerHTML = `
+            <div>Sous-total: <span class="total-amount">${subtotal.toFixed(2)} €</span></div>
+            ${shipping > 0 ? `<div>Frais de livraison: <span class="total-amount">${shipping.toFixed(2)} €</span></div>` : ''}
+            <div>Total: <span class="total-amount">${total.toFixed(2)} €</span></div>
+            ${subtotal > 0 ? `<button class="checkout-btn" onclick="checkout()">Passer la commande</button>` : ''}
+          `;
+        } else {
+          emptyCartMessage.style.display = 'block';
+          totalSection.innerHTML = '';
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        document.getElementById('cart-items').innerHTML = '<p>Erreur lors du chargement du panier</p>';
+      }
+    }
+
+    async function removeCartItem(itemId) {
+      try {
+        const response = await fetch(`cart_api.php?action=remove_item&id=${itemId}`, { method: 'POST' });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert(result.message);
+          loadCartItems();
+        } else {
+          alert('Erreur: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue');
+      }
+    }
+
+    async function updateQuantity(itemId, change) {
+      try {
+        const response = await fetch(`cart_api.php?action=update_quantity&id=${itemId}&change=${change}`, { method: 'POST' });
+        const result = await response.json();
+        
+        if (result.success) {
+          loadCartItems();
+        } else {
+          alert('Erreur: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue');
+      }
+    }
+
+    async function cancelNegotiation(negId) {
+      if (confirm('Voulez-vous vraiment annuler cette négociation ?')) {
+        try {
+          const response = await fetch(`cart_api.php?action=cancel_negotiation&id=${negId}`, { method: 'POST' });
+          const result = await response.json();
+          
+          if (result.success) {
+            alert(result.message);
+            loadCartItems();
+          } else {
+            alert('Erreur: ' + result.message);
+          }
+        } catch (error) {
+          console.error('Erreur:', error);
+          alert('Une erreur est survenue');
+        }
+      }
+    }
+
+    async function restartNegotiation(negId) {
+      // Implémentez cette fonction selon vos besoins
+      alert('Redirection vers la page de négociation pour l\'offre ' + negId);
+    }
+
+    async function cancelBid(bidId) {
+      if (confirm('Voulez-vous vraiment retirer cette enchère ?')) {
+        try {
+          const response = await fetch(`cart_api.php?action=cancel_bid&id=${bidId}`, { method: 'POST' });
+          const result = await response.json();
+          
+          if (result.success) {
+            alert(result.message);
+            loadCartItems();
+          } else {
+            alert('Erreur: ' + result.message);
+          }
+        } catch (error) {
+          console.error('Erreur:', error);
+          alert('Une erreur est survenue');
+        }
+      }
+    }
+
+    async function increaseBid(bidId) {
+      // Implémentez cette fonction selon vos besoins
+      alert('Ouvrir modal pour augmenter l\'enchère ' + bidId);
+    }
+
+    async function checkout() {
+      try {
+       const response = await fetch('cart_api.php?action=checkout', { method: 'POST' });
+        const result = await response.json();
+        
+        if (result.success) {
+          alert(result.message);
+          loadCartItems();
+        } else {
+          alert('Erreur: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue lors de la commande');
+      }
+    }
+  </script>
+</body>
+</html>
