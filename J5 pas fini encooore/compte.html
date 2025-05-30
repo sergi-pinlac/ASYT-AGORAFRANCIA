@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Agora Francia - Compte</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #fdfaf4;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      margin: 20px;
+      color: #3a2f0b;
+    }
+
+    .wrapper {
+      position: relative;
+      border: 10px double #a87e41;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3)
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid #a87e41;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      color: #2f4a6d;
+      font-size: 40px;
+      letter-spacing: 2px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .logo img {
+      height: 70px;
+      border: 2px solid #a87e41;
+      padding: 5px;
+      background-color: #fff;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-around;
+      background-color: #f7efe3;
+      border: 3px solid #a87e41;
+      padding: 10px;
+      margin: 15px 0;
+    }
+
+    .navigation button {
+      background-color: #e5d4a1;
+      border: 2px solid #a87e41;
+      border-radius: 6px;
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #3a2f0b;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    .navigation button:hover {
+      background-color: #d1b97b;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    form {
+      background-color: #fffaf0;
+      padding: 20px;
+      border: 2px solid #a87e41;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button[type="submit"] {
+      background-color: #e5d4a1;
+      color: #3a2f0b;
+      border: 2px solid #a87e41;
+      border-radius: 6px;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #d1b97b;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      border-top: 4px solid #a87e41;
+      color: #3a2f0b;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .register-link a {
+      color: #2f4a6d;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h1>Agora Francia</h1>
+      <div class="logo">
+        <img src="logo.jpg" alt="Logo Agora">
+      </div>
+    </div>
+
+    <div class="navigation">
+      <a href="accueil.php"><button>Accueil</button></a>
+      <a href="parcourir.html"><button>Tout Parcourir</button></a>
+      <a href="notifications.php"><button>Notifications</button></a>
+      <a href="panier.html"><button>Panier</button></a>
+      <a href="compte.php"><button>Votre Compte</button></a>
+    </div>
+
+    <section class="form-container">
+      <form action="connexion.php" method="POST">
+        <h3>Connexion</h3>
+        <label for="email-login">Adresse mail</label>
+        <input type="email" id="email-login" name="email" required>
+
+        <label for="password-login">Mot de passe</label>
+        <input type="password" id="password-login" name="password" required>
+
+        <button type="submit">Se connecter</button>
+      </form>
+
+      <div class="register-link">
+        <p>Pas encore de compte ? <a href="inscription.html">Créer un compte</a></p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <small>agoriafrancia@ece.fr | Copyright &copy; 2025 Agoria Francia | +33 06 30 44 46 50</small>
+    </div>
+  </div>
+</body>
+</html>
+
+
