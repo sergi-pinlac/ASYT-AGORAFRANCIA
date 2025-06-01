@@ -23,6 +23,7 @@ $articlesFlash = $requeteFlash->fetchAll(PDO::FETCH_ASSOC);
   <style>
     @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
+      // Interface utilisateur
     body {
       font-family: 'EB Garamond', serif;
       background-color: #fdfaf4;
