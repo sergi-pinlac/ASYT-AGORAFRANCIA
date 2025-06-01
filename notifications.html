@@ -1,1 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications - Agora Francia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #fdfaf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fffaf0;
+      border: 5px double #a87e41;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 30px;
+      color: #3a2f0b;
+      margin-bottom: 25px;
+    }
+
+    .notif {
+      padding: 15px;
+      border-left: 5px solid transparent;
+      margin-bottom: 15px;
+      background-color: #fffdf8;
+      transition: background-color 0.3s ease;
+    }
+
+    .notif.unread {
+      background-color: #f3e6d3;
+      border-left-color: #c97c1e;
+    }
+
+    .notif.read {
+      background-color: #fdfdfd;
+      border-left-color: #aaa;
+    }
+
+    .notif h4 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #2d3e50;
+    }
+
+    .notif p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .notif small {
+      color: #666;
+      font-style: italic;
+    }
+
+    .notif button {
+      margin-top: 10px;
+      background-color: #a87e41;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .notif button:hover {
+      background-color: #8a682d;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-buttons button {
+      background-color: #d1ba91;
+      color: #3a2f0b;
+      border: none;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .filter-buttons button.active {
+      background-color: #a87e41;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Notifications</h2>
+
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="unread">Non lues</button>
+      <button class="filter-btn" data-filter="read">Lues</button>
+    </div>
+
+    <div id="notifications">
+      <!-- Notifications JS -->
+    </div>
+  </div>
+
+  <script>
+    const notifications = [
+      {
+        id: 1,
+        title: "Objet vendu",
+        content: "Votre amphore grecque a été vendue à Marcus Antonius.",
+        date: "1 juin 2025",
+        read: false
+      },
+      {
+        id: 2,
+        title: "Nouveau message",
+        content: "Livia vous a envoyé un message concernant votre statue.",
+        date: "31 mai 2025",
+        read: false
+      },
+      {
+        id: 3,
+        title: "Objet non vendu",
+        content: "Votre torche romaine n'a pas trouvé preneur.",
+        date: "30 mai 2025",
+        read: true
+      },
+      {
+        id: 4,
+        title: "Message lu",
+        content: "Vous avez lu le message de Julius concernant l’échange.",
+        date: "29 mai 2025",
+        read: true
+      }
+    ];
+
+    const notifContainer = document.getElementById('notifications');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    function renderNotifications(filter = "all") {
+      notifContainer.innerHTML = "";
+
+      const filtered = notifications.filter(n => {
+        if (filter === "all") return true;
+        return filter === "read" ? n.read : !n.read;
+      });
+
+      if (filtered.length === 0) {
+        notifContainer.innerHTML = "<p style='text-align:center;color:#777;'>Aucune notification.</p>";
+        return;
+      }
+
+      filtered.forEach(n => {
+        const notif = document.createElement('div');
+        notif.className = `notif ${n.read ? 'read' : 'unread'}`;
+        notif.innerHTML = `
+          <h4>${n.title}</h4>
+          <p>${n.content}</p>
+          <small>${n.date}</small><br/>
+          ${!n.read ? '<button onclick="markAsRead(' + n.id + ')">Marquer comme lue</button>' : ''}
+        `;
+        notifContainer.appendChild(notif);
+      });
+    }
+
+    function markAsRead(id) {
+      const notif = notifications.find(n => n.id === id);
+      if (notif) notif.read = true;
+      renderNotifications(getCurrentFilter());
+    }
+
+    function getCurrentFilter() {
+      return document.querySelector('.filter-btn.active').dataset.filter;
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderNotifications(btn.dataset.filter);
+      });
+    });
+
+    // Initial render
+    renderNotifications();
+  </script>
+
+</body>
+</html>
