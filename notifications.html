@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Agora Francia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #fdfaf4;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      margin: 20px;
+      color: #3a2f0b;
+    }
+
+    .wrapper {
+      position: relative;
+      border: 10px double #a87e41;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid #a87e41;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      color: #2f4a6d;
+      font-size: 40px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .logo img {
+      height: 70px;
+      border: 2px solid #a87e41;
+      padding: 5px;
+      background-color: #fff;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-around;
+      background-color: #f7efe3;
+      border: 3px solid #a87e41;
+      padding: 10px;
+      margin: 15px 0;
+    }
+
+    .navigation button {
+      background-color: #e5d4a1;
+      border: 2px solid #a87e41;
+      border-radius: 6px;
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #3a2f0b;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    .navigation button:hover {
+      background-color: #d1b97b;
+    }
+
+    .section {
+      min-height: 200px;
+      border: 4px double #a87e41;
+      background-color: #fffaf0;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .section-title {
+      color: #8b0000;
+      font-size: 22px;
+      border-bottom: 2px solid #a87e41;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px 0;
+      scrollbar-width: thin;
+      scrollbar-color: #a87e41 #f7efe3;
+    }
+
+    .carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background-color: #a87e41;
+      border-radius: 4px;
+    }
+
+    .carousel-item {
+      min-width: 200px;
+      border: 2px solid #a87e41;
+      padding: 10px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .carousel-item h3 {
+      font-size: 16px;
+      margin: 5px 0;
+      color: #2f4a6d;
+    }
+
+    .carousel-item .price {
+      font-weight: bold;
+      color: #8b0000;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: bold;
+      margin-left: 5px;
+      text-transform: uppercase;
+    }
+
+    .type-immediate { background-color: #2f4a6d; color: white; }
+    .type-negotiation { background-color: #a87e41; color: white; }
+    .type-auction { background-color: #8b0000; color: white; }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      border-top: 4px solid #a87e41;
+      color: #3a2f0b;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Notification styles */
+    #notification-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .notification {
+      background-color: #2f4a6d;
+      color: white;
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      animation: fadeInOut 4s forwards;
+      font-size: 14px;
+      max-width: 300px;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-20px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="header">
+      <h1>Agora Francia</h1>
+      <div class="logo">
+        <img src="https://via.placeholder.com/70x70?text=Logo" alt="Logo Agora">
+      </div>
+    </div>
+
+    <div class="navigation">
+      <a href="#"><button>Accueil</button></a>
+      <a href="#"><button>Tout Parcourir</button></a>
+      <a href="#"><button>Notifications</button></a>
+      <a href="#"><button>Panier</button></a>
+      <a href="#"><button>Votre Compte</button></a>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Sélection du Jour</h3>
+      <div class="carousel">
+        <div class="carousel-item">
+          <img src="https://via.placeholder.com/200x120?text=Amphore" alt="Amphore">
+          <h3>Amphore antique <span class="type-badge type-auction">Enchère</span></h3>
+          <div class="price">Offre actuelle: 450 €</div>
+          <button class="view-btn">Voir</button>
+        </div>
+        <div class="carousel-item">
+          <img src="https://via.placeholder.com/200x120?text=Statue" alt="Statue">
+          <h3>Statuette d'Athéna <span class="type-badge type-negotiation">Négociation</span></h3>
+          <div class="price">Prix initial: 320 €</div>
+          <button class="view-btn">Voir</button>
+        </div>
+        <div class="carousel-item">
+          <img src="https://via.placeholder.com/200x120?text=Collier" alt="Collier">
+          <h3>Collier olympique <span class="type-badge type-immediate">Achat immédiat</span></h3>
+          <div class="price">180 €</div>
+          <button class="view-btn">Voir</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      agoriafrancia@ece.fr | &copy; 2025 Agora Francia | +33 06 30 44 46 50
+    </div>
+
+  </div>
+
+  <!-- Zone pour afficher les notifications -->
+  <div id="notification-container"></div>
+
+  <script>
+    // Fonction pour afficher une notification
+    function showNotification(message, type = 'info') {
+      const container = document.getElementById('notification-container');
+      const notif = document.createElement('div');
+      notif.classList.add('notification');
+
+      if (type === 'success') notif.style.backgroundColor = '#4CAF50';
+      if (type === 'error') notif.style.backgroundColor = '#c0392b';
+      if (type === 'warning') notif.style.backgroundColor = '#f39c12';
+
+      notif.textContent = message;
+      container.appendChild(notif);
+
+      setTimeout(() => {
+        notif.remove();
+      }, 4000);
+    }
+
+    // Ajout d'une notification quand l'utilisateur clique sur "Voir"
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const itemTitle = this.parentElement.querySelector('h3').textContent;
+        showNotification(`Vous consultez "${itemTitle}"`, 'success');
+      });
+    });
+  </script>
+
+</body>
+</html>
