@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Panier - Agora Francia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: #fdfaf4;
+      color: #3a2f0b;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 25px;
+      background-color: #fffdf7;
+      border: 8px double #a87e41;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid #a87e41;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      text-transform: uppercase;
+      color: #2f4a6d;
+    }
+
+    .logo img {
+      height: 65px;
+      border: 2px solid #a87e41;
+      padding: 4px;
+      background-color: white;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-around;
+      background-color: #f5e9d8;
+      padding: 12px;
+      margin: 20px 0;
+      border: 2px solid #a87e41;
+    }
+
+    .navigation a button {
+      background-color: #e5d4a1;
+      border: 2px solid #a87e41;
+      border-radius: 6px;
+      padding: 10px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .navigation button:hover {
+      background-color: #d1b97b;
+    }
+
+    .panier-title {
+      text-align: center;
+      font-size: 26px;
+      color: #2f4a6d;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #a87e41;
+      padding-bottom: 10px;
+    }
+
+    .item-panier {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px dashed #a87e41;
+    }
+
+    .item-panier:last-child {
+      border-bottom: none;
+    }
+
+    .item-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid #a87e41;
+      margin-right: 20px;
+    }
+
+    .item-info {
+      flex-grow: 1;
+    }
+
+    .item-name {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .item-desc {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .item-price {
+      font-weight: bold;
+      margin-top: 8px;
+      color: #8b0000;
+    }
+
+    .type-badge {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 12px;
+      margin-left: 10px;
+    }
+
+    .type-immediate { background: #2f4a6d; color: white; }
+    .type-negotiation { background: #a87e41; color: white; }
+    .type-auction { background: #8b0000; color: white; }
+
+    .item-actions {
+      text-align: right;
+    }
+
+    .item-actions button {
+      margin-top: 5px;
+      background-color: #e5d4a1;
+      border: 1px solid #a87e41;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .item-actions button:hover {
+      background-color: #c5aa6e;
+    }
+
+    .total-section {
+      text-align: right;
+      padding-top: 20px;
+      border-top: 2px solid #a87e41;
+      margin-top: 20px;
+    }
+
+    .total-amount {
+      font-size: 20px;
+      font-weight: bold;
+      color: #8b0000;
+    }
+
+    .checkout-btn {
+      background-color: #8b0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+
+    .checkout-btn:hover {
+      background-color: #6b0000;
+    }
+
+    .empty-cart {
+      text-align: center;
+      color: #555;
+      padding: 50px;
+      font-size: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="header">
+      <h1>Agora Francia</h1>
+      <div class="logo"><img src="logo.jpg" alt="Logo"></div>
+    </div>
+
+    <div class="navigation">
+      <a href="accueil.html"><button>Accueil</button></a>
+      <a href="parcourir.html"><button>Parcourir</button></a>
+      <a href="notifications.html"><button>Notifications</button></a>
+      <a href="panier.html"><button>Panier</button></a>
+      <a href="compte.html"><button>Compte</button></a>
+    </div>
+
+    <h2 class="panier-title">Votre Panier</h2>
+
+    <div id="cart-container">
+      <!-- Dynamically filled by JS -->
+    </div>
+
+    <div class="footer">
+      agoriafrancia@ece.fr | +33 06 30 44 46 50<br>
+      &copy; 2025 Agora Francia
+    </div>
+  </div>
+
+  <script>
+    const panier = [
+      {
+        id: 1,
+        nom: "Amphore antique",
+        type: "Achat immédiat",
+        desc: "Amphore grecque authentique du 5ème siècle avant JC.",
+        prix: 350,
+        image: "https://via.placeholder.com/100"
+      },
+      {
+        id: 2,
+        nom: "Bracelet olympique",
+        type: "Négociation",
+        desc: "Bracelet en or avec motif des Jeux antiques.",
+        prix: 280,
+        image: "https://via.placeholder.com/100"
+      },
+      {
+        id: 3,
+        nom: "Statuette d'Athéna",
+        type: "Meilleure offre",
+        desc: "Statuette en marbre rare, hauteur 25 cm.",
+        prix: 1200,
+        image: "https://via.placeholder.com/100"
+      }
+    ];
+
+    function typeBadge(type) {
+      if (type === "Achat immédiat") return 'type-immediate';
+      if (type === "Négociation") return 'type-negotiation';
+      return 'type-auction';
+    }
+
+    function afficherPanier() {
+      const container = document.getElementById('cart-container');
+      container.innerHTML = "";
+
+      if (panier.length === 0) {
+        container.innerHTML = `<div class="empty-cart">Votre panier est vide.<br><a href="parcourir.html">Parcourir les articles</a></div>`;
+        return;
+      }
+
+      let total = 0;
+      panier.forEach(item => {
+        total += item.prix;
+        container.innerHTML += `
+          <div class="item-panier">
+            <img class="item-image" src="${item.image}" alt="${item.nom}">
+            <div class="item-info">
+              <div class="item-name">${item.nom}
+                <span class="type-badge ${typeBadge(item.type)}">${item.type}</span>
+              </div>
+              <div class="item-desc">${item.desc}</div>
+              <div class="item-price">${item.type === "Achat immédiat" ? item.prix + " €" : "Offre: " + item.prix + " €"}</div>
+            </div>
+            <div class="item-actions">
+              <button onclick="supprimer(${item.id})">Retirer</button>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML += `
+        <div class="total-section">
+          Sous-total: <span class="total-amount">${total} €</span><br>
+          Livraison: <span class="total-amount">20 €</span><br>
+          <strong>Total: <span class="total-amount">${total + 20} €</span></strong><br>
+          <button class="checkout-btn">Passer la commande</button>
+        </div>
+      `;
+    }
+
+    function supprimer(id) {
+      const index = panier.findIndex(item => item.id === id);
+      if (index !== -1) {
+        panier.splice(index, 1);
+        afficherPanier();
+      }
+    }
+
+    afficherPanier();
+  </script>
+</body>
+</html>
